@@ -1,0 +1,18 @@
+code;name;category;quantity;expected
+NB-01;Notebook;COMPUTER;12;OK:qty=12
+MN-01;Monitor;DISPLAY;7;OK:qty=7
+KB-01;Keyboard;PERIPHERAL;20;OK:qty=20
+XX-01;Broken;UNKNOWN;5;SKIP:category not found
+NB-01;Duplicate;COMPUTER;2;SKIP:code already exists
+NEG;Negative;NETWORK;-1;SKIP:quantity must be >= 0
+ZERO;Empty;NETWORK;0;OK:qty=0
+;NoCode;NETWORK;1;SKIP:code is null or blank
+NM;;NETWORK;1;SKIP:name is null or blank
+TXT;Text;NETWORK;abc;SKIP:quantity not a number
+SPACE;Name; NETWORK;1;SKIP:surrounding spaces
+# Variant 21 extension: code;name;category;quantity;expected;action;date;expectedMovements
+NB-01;Notebook;COMPUTER;5;OK:qty=17;RECEIVE;2026-11-19;1
+NB-01;Notebook;COMPUTER;3;OK:qty=14;ISSUE;2026-11-19;2
+NB-01;Notebook;COMPUTER;0;OK:qty=14;QUERY;2026-11-18;0
+NB-01;Notebook;COMPUTER;100;SKIP:quantity cannot become negative;ISSUE;2026-11-19;2
+NB-01;Notebook;COMPUTER;0;OK:qty=14;QUERY;2026-11-19;2

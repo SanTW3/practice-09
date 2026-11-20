@@ -1,0 +1,27 @@
+digraph Activity {
+ graph [rankdir=TB, bgcolor=white, pad=0.3, nodesep=0.35, ranksep=0.4, dpi=160];
+ node [fontname="Arial", fontsize=15, shape=box, style="rounded,filled", fillcolor="#edf4fa", color="#234b68"];
+ edge [fontname="Arial", fontsize=12, color="#234b68"];
+ start [label="Начало",shape=ellipse];
+ input [label="Получить receive / issue, code и q"];
+ find [label="Найти позицию через items.get(code)"];
+ exists [label="Позиция найдена?",shape=diamond];
+ movement [label="Получить дату LocalDate.now(clock)\nСоздать StockMovement с типом RECEIVE / ISSUE"];
+ valid [label="q > 0 и корректные поля движения?",shape=diamond];
+ type [label="Операция RECEIVE?",shape=diamond];
+ capacity [label="q <= Integer.MAX_VALUE - quantity?",shape=diamond];
+ enough [label="q <= quantity?",shape=diamond];
+ increase [label="StockItem.increase(q)\nУвеличить остаток"];
+ decrease [label="StockItem.decrease(q)\nУменьшить остаток"];
+ log [label="Добавить датированную запись\nв movements после изменения остатка"];
+ summary [label="При запросе totalsByCategory\nпересчитать суммы по items.values()"];
+ error [label="Выбросить IllegalArgumentException\nОстаток и история не изменяются",fillcolor="#ffe8e8"];
+ end [label="Завершение",shape=ellipse];
+ start -> input -> find -> exists;
+ exists -> movement [label="да"]; exists -> error [label="нет"];
+ movement -> valid; valid -> type [label="да"]; valid -> error [label="нет"];
+ type -> capacity [label="да"]; type -> enough [label="нет"];
+ capacity -> increase [label="да"];capacity -> error [label="нет"];
+ enough -> decrease [label="да"];enough -> error [label="нет"];
+ increase -> log;decrease -> log;log -> summary -> end;error -> end;
+}

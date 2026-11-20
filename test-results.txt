@@ -1,0 +1,51 @@
+PASS unit/1 StockItem constructor valid
+PASS unit/2 StockItem negative quantity
+PASS unit/3 StockItem increase 5
+PASS unit/4 StockItem increase zero and negative
+PASS unit/5 StockItem decrease 5
+PASS unit/6 StockItem decrease exceeds stock
+PASS unit/7 Warehouse addItem valid
+PASS unit/8 Warehouse duplicate code
+PASS unit/9 Warehouse addItem null
+PASS unit/10 Warehouse receive valid
+PASS unit/11 Warehouse receive missing code
+PASS unit/12 Warehouse issue valid
+PASS unit/13 Warehouse issue exceeds stock
+PASS unit/14 Warehouse issue missing code
+PASS unit/15 Warehouse find two computers
+PASS unit/16 Warehouse find absent category
+PASS unit/17 Warehouse search defensive copy
+PASS unit/18 Warehouse totals by category
+PASS unit/19 Variant A receive dated
+PASS unit/20 Variant A issue dated
+PASS unit/21 Variant B date with movements
+PASS unit/22 Variant B absent date
+PASS unit/23 StockItem code and name guards
+PASS unit/24 Category guards
+PASS unit/25 StockItem zero and exact decrease
+PASS unit/26 StockItem equality and Set
+PASS unit/27 Warehouse owns added item
+PASS unit/28 Failed quantity leaves no movement
+PASS unit/29 StockItem overflow prevented
+PASS unit/30 Variant B copied result and target warehouse
+PASS unit/31 Variant B null arguments
+PASS unit/32 Warehouse totals and categories are copies
+PASS unit/33 Variant dates change at midnight
+PASS data/2
+PASS data/3
+PASS data/4
+PASS data/5
+PASS data/6
+PASS data/7
+PASS data/8
+PASS data/9
+PASS data/10
+PASS data/11
+PASS data/12
+PASS data/14
+PASS data/15
+PASS data/16
+PASS data/17
+PASS data/18
+Data-driven: PASS=16 FAIL=0
+TOTAL PASS=49 FAIL=0

@@ -1,0 +1,16 @@
+digraph Classes {
+ graph [rankdir=TB, bgcolor=white, pad=0.35, nodesep=0.45, ranksep=0.7, dpi=160];
+ node [shape=record,fontname="Arial",fontsize=13,style=filled,fillcolor="#edf4fa",color="#234b68"];
+ edge [fontname="Arial",fontsize=12,color="#234b68"];
+ Warehouse [label="{Warehouse|- items: Map\<String, StockItem\>\l- movements: List\<StockMovement\>\l- clock: Clock final\l|+ Warehouse()\l+ Warehouse(clock: Clock)\l+ addItem(item: StockItem): void\l+ receive(code: String, q: int): void\l+ issue(code: String, q: int): void\l+ findByCategory(c: Category): List\<StockItem\>\l+ totalsByCategory(): Map\<Category, Integer\>\l+ addMovementsByDate(wh: Warehouse, date: LocalDate): List\<StockMovement\>\l+ categories(): Set\<Category\>\l+ itemsCount(): int\l+ movementsCount(): int\l- requireItem(code: String): StockItem\l- copy(item: StockItem): StockItem\l}"];
+ StockItem [label="{StockItem final|- code: String final\l- name: String final\l- category: Category final\l- quantity: int\l|+ StockItem(code, name, category, quantity)\l+ increase(q: int): void\l+ decrease(q: int): void\l+ getCode(): String\l+ getName(): String\l+ getCategory(): Category\l+ getQuantity(): int\l+ equals(other: Object): boolean\l+ hashCode(): int\l+ toString(): String\l}"];
+ StockMovement [label="{StockMovement record|itemCode: String\ltype: MovementType\lquantity: int\ldate: LocalDate\l|+ StockMovement(itemCode, type, quantity, date)\l+ itemCode(): String\l+ type(): MovementType\l+ quantity(): int\l+ date(): LocalDate\l}"];
+ Category [label="{Category enum|COMPUTER\lDISPLAY\lPERIPHERAL\lNETWORK\l}"];
+ MovementType [label="{MovementType enum|RECEIVE\lISSUE\l}"];
+ SelfCheck [label="{SelfCheck|+ main(args: String[]): void\l- unitChecks()\l- dataChecks(path: Path)\l- interactive()\l}"];
+ SelfCheck -> Warehouse [style=dashed,label="тестирует и вызывает"];
+ Warehouse -> StockItem [dir=both,arrowtail=diamond,arrowhead=none,label="1    0..*"];
+ Warehouse -> StockMovement [dir=both,arrowtail=diamond,arrowhead=none,label="1    0..*"];
+ StockItem -> Category [label="category"];
+ StockMovement -> MovementType [label="type"];
+}

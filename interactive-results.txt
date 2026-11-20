@@ -1,0 +1,12 @@
+add code name category qty | receive code qty | issue code qty
+find category | totals | dates yyyy-MM-dd | categories | exit
+items=1 movements=0 totals={COMPUTER=12}
+items=1 movements=1 totals={COMPUTER=17}
+items=1 movements=2 totals={COMPUTER=14}
+[NB-01 Notebook COMPUTER qty=14]
+items=1 movements=2 totals={COMPUTER=14}
+{COMPUTER=14}
+items=1 movements=2 totals={COMPUTER=14}
+[StockMovement[itemCode=NB-01, type=RECEIVE, quantity=5, date=2026-11-19], StockMovement[itemCode=NB-01, type=ISSUE, quantity=3, date=2026-11-19]]
+items=1 movements=2 totals={COMPUTER=14}
+IllegalArgumentException: quantity cannot become negative
